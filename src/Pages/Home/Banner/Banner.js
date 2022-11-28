@@ -1,38 +1,16 @@
 import React from 'react';
 import banner1 from '../../../assets/img/banner-4.jpeg'
-import banner2 from '../../../assets/img/banner-1.jpg'
-import banner3 from '../../../assets/img/banner-2.jpg'
-import banner4 from '../../../assets/img/banner-3.png'
+
 
 const Banner = () => {
     return (
-        <div className="carousel w-full">
-            <div id="slide1" className="carousel-item relative w-full h-2/4">
-                <img src={banner1} className="w-full" alt='' />
-                <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                    <a href="#slide4" className="btn btn-circle">❮</a>
-                    <a href="#slide2" className="btn btn-circle">❯</a>
-                </div>
-            </div>
-            <div id="slide2" className="carousel-item relative w-full">
-                <img src={banner2} className="w-full" alt='' />
-                <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                    <a href="#slide1" className="btn btn-circle">❮</a>
-                    <a href="#slide3" className="btn btn-circle">❯</a>
-                </div>
-            </div>
-            <div id="slide3" className="carousel-item relative w-full">
-                <img src={banner3} className="w-full" alt='' />
-                <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                    <a href="#slide2" className="btn btn-circle">❮</a>
-                    <a href="#slide4" className="btn btn-circle">❯</a>
-                </div>
-            </div>
-            <div id="slide4" className="carousel-item relative w-full">
-                <img src={banner4} className="w-full" alt='' />
-                <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                    <a href="#slide3" className="btn btn-circle">❮</a>
-                    <a href="#slide1" className="btn btn-circle">❯</a>
+        <div className="hero min-h-[700px]" style={{ backgroundImage: `url(${banner1})` }}>
+            <div className="hero-overlay bg-opacity-60"></div>
+            <div className="hero-content text-center text-neutral-content">
+                <div className="max-w[400px]">
+                    <h1 className="mb-6  text-6xl font-bold">Welcome To The Biggest Phone Store</h1>
+                    <p className="mb-5  text-xl">Welcome to the biggest phone resale store. Here you can buy phone in cheaper rate. We make this platform for those people who want to sell their phones. You can sell your phone on your desired rate also. So explore this website.</p>
+                    <button className="btn btn-primary">Get Started</button>
                 </div>
             </div>
         </div>
