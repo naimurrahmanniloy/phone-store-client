@@ -1,5 +1,4 @@
 import React from 'react';
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from 'react-router-dom';
 import './Login.css';
@@ -7,8 +6,7 @@ import { FcGoogle } from 'react-icons/fc';
 
 
 const Login = () => {
-    const { register, handleSubmit } = useForm();
-    const [data, setData] = useState("");
+    const { register, formState: { errors }, handleSubmit } = useForm();
 
     const handleLogin = data => {
         console.log(data);
@@ -26,7 +24,10 @@ const Login = () => {
                             <span className="label-text">Email</span>
 
                         </label>
-                        <input type="text" className="input input-bordered w-full max-w-xs"  {...register("email")} />
+                        <input type="text" className="input input-bordered w-full max-w-xs"  {...register("email", { required: "Email is required" })} />
+
+                        {errors.email && <p className='text-warning mt-2' role="alert">{errors.email?.message}</p>}
+
 
                     </div>
                     <div className="form-control w-full max-w-xs">
@@ -34,15 +35,17 @@ const Login = () => {
                             <span className="label-text">Password</span>
 
                         </label>
-                        <input type="password" className="input input-bordered w-full max-w-xs"  {...register("password")} />
+                        <input type="password" className="input input-bordered w-full max-w-xs"  {...register("password", { required: "Password is required" })} />
+                        {errors.password && <p className='text-warning mt-2' role="alert">{errors.password?.message}</p>}
                         <label className="label">
                             <span className="label-text">Forget Password?</span>
                         </label>
+
                     </div>
                     <input value='Login' className='btn btn-primary w-full' type="submit" />
                 </form>
                 <p className='mt-7'>New to Phone Store? <Link to='/signup'>Create new account</Link></p>
-                <div className="divider text-white">OR</div>
+                <div className="divider">OR</div>
                 <button className='btn btn-outline w-full'>CONTINUE WITH GOOGLE <FcGoogle className='ml-4 text-xl'></FcGoogle></button>
             </div>
         </div>
