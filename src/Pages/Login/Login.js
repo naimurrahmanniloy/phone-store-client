@@ -1,15 +1,31 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from "react-hook-form";
 import { Link } from 'react-router-dom';
 import './Login.css';
 import { FcGoogle } from 'react-icons/fc';
+import { AuthContext } from '../../context/AuthProvider';
+
 
 
 const Login = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
+    const { signIn } = useContext(AuthContext);
+    const [loginError, setLoginError] = useState('')
+
 
     const handleLogin = data => {
         console.log(data);
+        setLoginError('')
+        signIn(data.email, data.password)
+            .then(res => {
+                const user = res.user;
+                console.log(user);
+
+            })
+            .catch(error => {
+                console.log(error.message)
+                setLoginError(error.message)
+            })
 
     }
 
@@ -43,6 +59,9 @@ const Login = () => {
 
                     </div>
                     <input value='Login' className='btn btn-primary w-full' type="submit" />
+                    <div>
+                        {loginError && <p>{loginError}</p>}
+                    </div>
                 </form>
                 <p className='mt-7'>New to Phone Store? <Link to='/signup'>Create new account</Link></p>
                 <div className="divider">OR</div>
