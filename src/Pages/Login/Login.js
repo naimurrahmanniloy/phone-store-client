@@ -1,16 +1,21 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from "react-hook-form";
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './Login.css';
 import { FcGoogle } from 'react-icons/fc';
 import { AuthContext } from '../../context/AuthProvider';
+import toast from 'react-hot-toast';
 
 
 
 const Login = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
-    const { signIn } = useContext(AuthContext);
-    const [loginError, setLoginError] = useState('')
+    const { signIn, googleSignIn } = useContext(AuthContext);
+    const [loginError, setLoginError] = useState('');
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    const from = location.state?.from?.pathname || '/'
 
 
     const handleLogin = data => {
@@ -20,13 +25,28 @@ const Login = () => {
             .then(res => {
                 const user = res.user;
                 console.log(user);
+                navigate(from, { replace: true })
+                toast.success("Sign In Successful")
 
             })
             .catch(error => {
                 console.log(error.message)
                 setLoginError(error.message)
             })
+    }
+    const handleGoogleSignIN = () => {
+        googleSignIn()
+            .then(res => {
+                const user = res.user;
+                console.log(user)
+                navigate(from, { replace: true })
+                toast.success("Sign In Successful")
 
+            })
+            .catch(error => {
+                console.log(error)
+                setLoginError(error.message)
+            })
     }
 
     return (
@@ -65,7 +85,7 @@ const Login = () => {
                 </form>
                 <p className='mt-7'>New to Phone Store? <Link to='/signup'>Create new account</Link></p>
                 <div className="divider">OR</div>
-                <button className='btn btn-outline w-full'>CONTINUE WITH GOOGLE <FcGoogle className='ml-4 text-xl'></FcGoogle></button>
+                <button onClick={handleGoogleSignIN} className='btn btn-outline w-full'>CONTINUE WITH GOOGLE <FcGoogle className='ml-4 text-xl'></FcGoogle></button>
             </div>
         </div>
     );

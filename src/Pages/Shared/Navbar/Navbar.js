@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthProvider';
+import { FaUserAlt } from 'react-icons/fa';
 
 
 const Navbar = () => {
@@ -13,7 +14,15 @@ const Navbar = () => {
     }
     const menuItems = <React.Fragment>
         <li><Link to='/'>Home</Link></li>
-        {user?.uid ? <li><button onClick={handleLogOut}>Sign Out</button></li> : <li><Link to='/login'>Login</Link></li>}
+
+        {user?.uid ?
+            <>
+                <li><button onClick={handleLogOut}>Sign Out</button></li>
+                <li><Link to='/dashboard'>Dashboard</Link></li>
+
+            </>
+            :
+            <li><Link to='/login'>Login</Link></li>}
 
     </React.Fragment>
     return (
@@ -39,11 +48,11 @@ const Navbar = () => {
                     <div className="dropdown dropdown-end">
                         <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                             <div className="w-10 rounded-full">
-                                <img src="https://placeimg.com/80/80/people" alt='' />
+                                {user?.uid ? < img src={user.photoURL} alt='' /> : <FaUserAlt className='text-xl m-2'></FaUserAlt>}
                             </div>
                         </label>
                         <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-                            <p>Naimur Rahman Niloy</p>
+                            {user?.uid ? <p>{user.displayName}</p> : <p>User</p>}
 
                         </ul>
                     </div>
