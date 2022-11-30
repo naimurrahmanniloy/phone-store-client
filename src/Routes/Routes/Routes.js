@@ -1,7 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../../Layout/Main";
 import Blogs from "../../Pages/Blogs/Blogs";
-import Dashboard from "../../Pages/Dashboard/Dashboard/Dashboard";
 import Categories from "../../Pages/DisplayPost/Categories";
 import Home from "../../Pages/Home/Home/Home";
 import Login from "../../Pages/Login/Login";
@@ -31,17 +30,13 @@ const router = createBrowserRouter([
                 element: <Blogs></Blogs>
             },
             {
-                path: '/category/:id',
+                path: '/category/:category',
                 element: <Categories></Categories>,
-                loader: ({ params }) => fetch(`http://localhost:5000/category/${params.id}`)
+                loader: ({ params }) => fetch(`http://localhost:5000/category/${params.category}`)
 
             },
         ]
     },
-    {
-        path: '/dashboard',
-        element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>
-    }
 ])
 
 export default router

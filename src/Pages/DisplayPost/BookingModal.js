@@ -1,11 +1,12 @@
 import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
-import { AuthContext } from '../../../Context/AuthProvider';
+import { AuthContext } from '../../context/AuthProvider';
+
 
 
 
 const BookingModal = ({ bookingInfo, setBookingInfo }) => {
-    const { productName, resalePrice } = bookingInfo;
+    const { deviceName, resalePrice } = bookingInfo;
 
     const { user } = useContext(AuthContext);
 
@@ -18,7 +19,7 @@ const BookingModal = ({ bookingInfo, setBookingInfo }) => {
         const location = form.MeetingLocation.value;
         const booking = {
 
-            productName: productName,
+            productName: deviceName,
             price: resalePrice,
             email,
             phone,
@@ -54,9 +55,9 @@ const BookingModal = ({ bookingInfo, setBookingInfo }) => {
             <div className="modal">
                 <div className="modal-box relative">
                     <label htmlFor="booking-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-                    <h3 className="text-lg font-bold">{productName}</h3>
+                    <h3 className="text-lg font-bold">{deviceName}</h3>
                     <form onSubmit={handleBooking} className='grid grid-cols-1 gap-3 mt-10'>
-                        <input name="productName" defaultValue={productName} disabled type="text" placeholder="Your Name" className="input w-full input-bordered" />
+                        <input name="productName" defaultValue={deviceName} disabled type="text" placeholder="Your Name" className="input w-full input-bordered" />
                         <input name="price" defaultValue={resalePrice} disabled type="text" placeholder="Your Name" className="input w-full input-bordered" />
                         <input name="name" defaultValue={user?.displayName} disabled type="text" placeholder="Your Name" className="input w-full input-bordered" />
                         <input name="email" defaultValue={user?.email} disabled type="email" placeholder="Email Address" className="input w-full input-bordered" />

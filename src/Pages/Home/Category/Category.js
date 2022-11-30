@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import CategoryCard from '../Category/CategoryCard';
+import CategoryCard from './CategoryCard';
+
 
 const Category = () => {
     const [categories, setCategories] = useState('');
@@ -14,13 +15,13 @@ const Category = () => {
 
     return (
         <div>
-            <div><h1 className='text-5xl mt-10 text-center mb-12'>Phone Category</h1></div>
+            <div><h1 className='text-5xl text-center mb-12'>Phone Category</h1></div>
             <div className='grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mb-10 mx-auto '>
                 {
                     categories &&
-                    categories.map(category => <CategoryCard
-                        key={category._id}
-                        category={category}
+                    categories.map(product => <CategoryCard
+                        key={product._id}
+                        product={product}
                     ></CategoryCard>)
                 }
             </div>

@@ -1,0 +1,68 @@
+[
+    {
+        "customID": 1,
+        "deviceName": "Iphone XS Max",
+        "sellerName": "Tahsin",
+        "img": "https://upload.wikimedia.org/wikipedia/commons/f/f8/IPhone_Xs_Max_64GB.jpg",
+        "resalePrice": 50000,
+        "originalPrice": 80000,
+        "yearsOfUse": "1 Years",
+        "postedDate": "October 17, 2019",
+        "category": "Iphone"
+    },
+    {
+        "customID": 2,
+        "deviceName": "Iphone 14pro Max",
+        "sellerName": "Sobur",
+        "img": "https://s.hdnux.com/photos/01/27/46/17/22963193/5/ratio3x2_1200.jpg",
+        "resalePrice": 80000,
+        "originalPrice": 300000,
+        "yearsOfUse": "1 Years",
+        "postedDate": "October 17, 2022",
+        "category": "Iphone"
+    },
+    {
+        "customID": 3,
+        "deviceName": "Samsung s22 ultra",
+        "sellerName": "Taksim",
+        "img": "https://i0.wp.com/www.smartprix.com/bytes/wp-content/uploads/2022/03/Samsung-Galaxy-S22-Ultra-review-12-scaled.jpg?fit=2560%2C1920&ssl=1",
+        "resalePrice": 100000,
+        "originalPrice": 200000,
+        "yearsOfUse": "2 Years",
+        "postedDate": "October 17, 2020",
+        "category": "Samsung"
+    },
+    {
+        "customID": 4,
+        "deviceName": "Samsung Note 10",
+        "sellerName": "Tahmid",
+        "img": "https://s3.eu-west-1.amazonaws.com/assets-v2.tech.co/wp-content/uploads/2019/11/29053210/samsung-galaxy-note-10-plus-rear.jpg",
+        "resalePrice": 30000,
+        "originalPrice": 60000,
+        "yearsOfUse": "4 Years",
+        "postedDate": "October 17, 2022",
+        "category": "Samsung"
+    },
+    {
+        "customID": 5,
+        "deviceName": "Xiaomi Note10 pro",
+        "sellerName": "Tahsin",
+        "img": "https://www.androidauthority.com/wp-content/uploads/2021/03/Redmi-Note-10-Pro-rear-profile.jpgg",
+        "resalePrice": 13000,
+        "originalPrice": 20000,
+        "yearsOfUse": "1 Years",
+        "postedDate": "October 17, 2019",
+        "category": "Xiaomi"
+    },
+    {
+        "customID": 6,
+        "deviceName": "Xiaomi Note 7pro",
+        "sellerName": "NIloy",
+        "img": "https://www.mobilepagla.com/wp-content/uploads/2019/06/xiaomi-redmi-note-7-pro.jpg",
+        "resalePrice": 5000,
+        "originalPrice": 12000,
+        "yearsOfUse": "1 Years",
+        "postedDate": "October 17, 2019",
+        "category": "Xiaomi"
+    }
+]

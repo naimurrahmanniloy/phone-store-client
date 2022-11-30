@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const CategoryCard = ({ category }) => {
-    const { name, picture, _id } = category;
+const CategoryCard = ({ product }) => {
+    const { name, picture, _id, category } = product;
+    console.log(category)
 
 
     return (
@@ -14,7 +15,7 @@ const CategoryCard = ({ category }) => {
                 <h2 className="card-title">{name}</h2>
                 <p>If you want to buy second hand phone this will be the best choice for you..</p>
                 <div className="card-actions justify-end">
-                    <Link to={`/category/${_id}`}> <button className="btn btn-primary px-20">show</button></Link>
+                    <Link to={`/category/${category}`}> <button className="btn btn-primary px-20">show</button></Link>
                 </div>
             </div>
         </div>
