@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthProvider';
 
 const PostCard = ({ product, setBookingInfo }) => {
     const { deviceName, phone, description, location, originalPrice, resalePrice, yearsOfUse, sellerName, img, } = product;
+    const { user } = useContext(AuthContext)
     return (
 
         <div>
@@ -17,12 +20,16 @@ const PostCard = ({ product, setBookingInfo }) => {
                     <p>Description: {description}</p>
                     <p>Phone Number: {phone}</p>
                     <div>
-                        <label
-                            htmlFor="booking-modal"
-                            className="btn btn-primary text-white"
-                            onClick={() => setBookingInfo(product)}
-
-                        >Book Now</label>
+                        {
+                            user?.uid ? <label
+                                htmlFor="booking-modal"
+                                className="btn btn-primary text-white"
+                                onClick={() => setBookingInfo(product)}>Book Now</label> :
+                                <Link to='/login'><label
+                                    htmlFor="booking-modal"
+                                    className="btn btn-primary text-white"
+                                >Book Now</label></Link>
+                        }
                     </div>
                 </div>
             </div>
