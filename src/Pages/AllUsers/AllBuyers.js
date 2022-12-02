@@ -12,24 +12,22 @@ const AllBuyers = () => {
         }
     });
 
-    // const handleDelete = id => {
-    //     const proceed = window.confirm('Are you sure, you want to delete this user');
-    //     if (proceed) {
-    //         fetch(`http://localhost:5000/users/${id}`, {
-    //             method: 'DELETE',
-    //             headers: {
-    //                 authorization: `bearer ${localStorage.getItem('accessToken')}`
-    //             }
-    //         })
-    //             .then(res => res.json())
-    //             .then(data => {
-    //                 if (data.deletedCount > 0) {
-    //                     toast('deleted successfully');
-    //                     refetch()
-    //                 }
-    //             })
-    //     }
-    // }
+    const handleDelete = id => {
+        const proceed = window.confirm('Are you sure, you want to delete this user');
+
+        if (proceed) {
+            fetch(`http://localhost:5000/users/${id}`, {
+                method: 'DELETE'
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.deletedCount > 0) {
+                        toast('deleted successfully');
+                        refetch()
+                    }
+                })
+        }
+    }
 
     return (
         <div>
@@ -51,7 +49,7 @@ const AllBuyers = () => {
                                 <th>{i + 1}</th>
                                 <td>{user.name}</td>
                                 <td>{user.email}</td>
-                                <td>{user?.role !== 'admin' && <button className='btn btn-xs btn-primary'>Delete user</button>}</td>
+                                <td>{user?.role !== 'admin' && <button onClick={() => handleDelete(user._id)} className='btn btn-xs btn-primary'>Delete user</button>}</td>
                                 <td><button className='btn btn-xs btn-danger'>Verify</button></td>
                             </tr>)
                         }

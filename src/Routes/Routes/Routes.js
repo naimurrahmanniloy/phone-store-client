@@ -1,6 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
+import NotFoundPage from "../../404NotFound/NotFoundPage";
 import DashboardLayout from "../../Layout/DashboardLayout";
 import Main from "../../Layout/Main";
+import AllPost from "../../Pages/AllPost/AllPost";
 import AllBuyers from "../../Pages/AllUsers/AllBuyers";
 import AllSellers from "../../Pages/AllUsers/AllSellers";
 import Blogs from "../../Pages/Blogs/Blogs";
@@ -63,9 +65,17 @@ const router = createBrowserRouter([
                 path: '/dashboard/allseller',
                 element: <AdminRoute><AllSellers></AllSellers></AdminRoute>
             },
+            {
+                path: '/dashboard/allposts',
+                element: <AdminRoute><AllPost></AllPost></AdminRoute>
+            },
 
 
         ]
+    },
+    {
+        path: '*',
+        element: <NotFoundPage></NotFoundPage>
     }
 ])
 
