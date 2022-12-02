@@ -10,6 +10,7 @@ import Categories from "../../Pages/DisplayPost/Categories";
 import Home from "../../Pages/Home/Home/Home";
 import Login from "../../Pages/Login/Login";
 import MyBookings from "../../Pages/MyBookings/MyBookings";
+import Payment from "../../Pages/Payment/Payment";
 import SellPost from "../../Pages/SellPost/SellPost";
 import Signup from "../../Pages/Signup/Signup";
 import AdminRoute from "../AdminRoute/AdminRoute";
@@ -68,6 +69,11 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/allposts',
                 element: <AdminRoute><AllPost></AllPost></AdminRoute>
+            },
+            {
+                path: '/dashboard/payment/:id',
+                element: <Payment></Payment>,
+                loader: ({ params }) => fetch(`http://localhost:5000/bookings/${params.id}`)
             },
 
 

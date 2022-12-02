@@ -16,10 +16,7 @@ const AllSellers = () => {
         const proceed = window.confirm('Are you sure, you want to delete this user');
         if (proceed) {
             fetch(`http://localhost:5000/users/${id}`, {
-                method: 'DELETE',
-                headers: {
-                    authorization: `bearer ${localStorage.getItem('accessToken')}`
-                }
+                method: 'DELETE'
             })
                 .then(res => res.json())
                 .then(data => {
