@@ -1,11 +1,30 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js'
+import toast from 'react-hot-toast';
 
 const CheckoutForm = ({ booking }) => {
     const [cardError, setCardError] = useState('')
+    const [success, setSuccess] = useState('')
+    const [clientSecret, setClientSecret] = useState('')
     const stripe = useStripe();
     const elements = useElements();
-    const { price } = booking
+    const { price, email, name } = booking;
+
+    const handlePayClick = (event) => {
+        event.preventDefault()
+        toast('Payment Confirmed')
+    }
+
+    useEffect(() => {
+        //create paymentIntent as soon as the the page laods
+        fetch('http://localhost:5000/create-payment-intent', {
+            method: 'POST',
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ price }),
+        })
+            .then((res) => res.json())
+            .then((data) => setClientSecret(data.clientSecret));
+    }, [price]);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -27,6 +46,26 @@ const CheckoutForm = ({ booking }) => {
         else {
             setCardError('')
         }
+        const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment(
+            clientSecret,
+            {
+                payment_method: {
+                    card: card,
+                    billing_details: {
+                        name: name,
+                        email: email
+                    },
+                },
+            },
+        );
+        if (confirmError) {
+            setCardError(confirmError.message);
+            return;
+        }
+        if (paymentIntent.status === "succeeded") {
+            setSuccess('Congrats!! Your payment completed')
+        }
+        console.log('paymentIntent', paymentIntent)
     }
 
     return (
@@ -48,13 +87,20 @@ const CheckoutForm = ({ booking }) => {
                         },
                     }}
                 />
-                <button className='btn btn-sm mt-5 btn-primary' type="submit" disabled={!stripe}>
+                <button onClick={handlePayClick} className='btn btn-sm mt-5 btn-primary' type="submit" >
                     Pay
                 </button>
             </form>
             <p className="text-red-500">{cardError}</p>
+            {
+                success && <div>
+                    <p className='text-green-500'>{success}</p>
+
+                </div>
+            }
         </>
     );
 };
 
 export default CheckoutForm;
+

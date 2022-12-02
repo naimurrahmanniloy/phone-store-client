@@ -28,7 +28,7 @@ const MyPosts = () => {
     const handleDelete = id => {
         const proceed = window.confirm('Are you sure?');
         if (proceed) {
-            fetch(`https://garage-server.vercel.app/sellpost/${id}`, {
+            fetch(`http://localhost:5000/allphones/${id}`, {
                 method: 'DELETE',
                 headers: {
                     authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -52,7 +52,7 @@ const MyPosts = () => {
                     <div className="card w-auto glass bg-base-100 shadow-2xl">
                         <figure><img src={post.image} alt="Shoes" style={{ height: 280, width: 500 }} /></figure>
                         <div className="card-body">
-                            <h2 className="card-title">{post.productName}</h2>
+                            <h2 className="card-title">{post.deviceName}</h2>
                             <p>Original price: ${post.originalPrice}</p>
                             <p>Resale price: ${post.resalePrice}</p>
                             <p>Year of Purchase: {post.yearOfPurchase}</p>
