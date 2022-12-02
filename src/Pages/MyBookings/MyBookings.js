@@ -1,3 +1,5 @@
+import { async } from '@firebase/util';
+import { useQuery } from '@tanstack/react-query';
 import React, { useContext, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { AuthContext } from '../../context/AuthProvider';
@@ -5,43 +7,62 @@ import { AuthContext } from '../../context/AuthProvider';
 
 const MyBookings = () => {
     const { user } = useContext(AuthContext);
-    const [bookings, setBooking] = useState([])
-    useEffect(() => {
-        fetch(`https://garage-21d76.web.app/sellposts?email=${user?.email}`, {
-            headers: {
-                authorization: `bearer ${localStorage.getItem('accessToken')}`
-            }
-        })
-            .then(res => {
-                if (res.status === 401 || res.status === 403) {
-                    return
-                }
-                return res.json();
-            })
-            .then(data => {
-                setBooking(data);
-            })
-    }, [user?.email,])
+    // const [booking, setBooking] = useState([])
 
-    const handleDelete = id => {
-        const proceed = window.confirm('Are you sure');
-        if (proceed) {
-            fetch(`https://garage-server.vercel.app/bookings/${id}`, {
-                method: 'DELETE',
+    const url = `http://localhost:5000/bookings?email=${user?.email}`;
+
+
+    const { data: bookings = [] } = useQuery({
+
+        queryKey: ['bookings', user?.email],
+        queryFn: async () => {
+            const res = await fetch(url, {
                 headers: {
                     authorization: `bearer ${localStorage.getItem('accessToken')}`
                 }
-            })
-                .then(res => res.json())
-                .then(data => {
-                    if (data.deletedCount > 0) {
-                        toast('cancel successfully');
-                        const remaining = bookings.filter(odr => odr._id !== id);
-                        setBooking(remaining);
-                    }
-                })
+            });
+            const data = await res.json();
+            return data;
         }
-    }
+
+    })
+
+    // useEffect(() => {
+    //     fetch(`https://garage-21d76.web.app/sellposts?email=${user?.email}`, {
+    //         headers: {
+    //             authorization: `bearer ${localStorage.getItem('accessToken')}`
+    //         }
+    //     })
+    //         .then(res => {
+    //             if (res.status === 401 || res.status === 403) {
+    //                 return
+    //             }
+    //             return res.json();
+    //         })
+    //         .then(data => {
+    //             setBooking(data);
+    //         })
+    // }, [user?.email,])
+
+    // const handleDelete = id => {
+    //     const proceed = window.confirm('Are you sure');
+    //     if (proceed) {
+    //         fetch(`http://localhost:5000/bookings/${id}`, {
+    //             method: 'DELETE',
+    //             headers: {
+    //                 authorization: `bearer ${localStorage.getItem('accessToken')}`
+    //             }
+    //         })
+    //             .then(res => res.json())
+    //             .then(data => {
+    //                 if (data.deletedCount > 0) {
+    //                     toast('cancel successfully');
+    //                     const remaining = bookings.filter(odr => odr._id !== id);
+    //                     setBooking(remaining);
+    //                 }
+    //             })
+    //     }
+    // }
 
     return (
         <div>
@@ -54,7 +75,7 @@ const MyBookings = () => {
                             <th>Name</th>
                             <th>Email</th>
                             <th>Phone</th>
-                            <th>Product Name</th>
+                            <th>Device Name</th>
                             <th>Price</th>
                             <th>Payment</th>
                             <th>Action</th>
@@ -67,10 +88,10 @@ const MyBookings = () => {
                                 <td>{booking.name}</td>
                                 <td>{booking.email}</td>
                                 <td>{booking.phone}</td>
-                                <td>{booking.productName}</td>
-                                <td>{booking.resalePrice}</td>
+                                <td>{booking.deviceName}</td>
+                                <td>{booking.price}</td>
                                 <td><button className='btn btn-xs btn-danger'>Pay</button></td>
-                                <td> <button onClick={() => handleDelete(booking._id)} className='btn btn-xs btn-primary'>Cancel</button></td>
+                                <td> <button className='btn btn-xs btn-primary'>Cancel</button></td>
                             </tr>)
                         }
 

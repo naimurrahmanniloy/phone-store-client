@@ -9,6 +9,7 @@ import MyBookings from "../../Pages/MyBookings/MyBookings";
 import SellPost from "../../Pages/SellPost/SellPost";
 import Signup from "../../Pages/Signup/Signup";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import SellerRoute from "../SellerRoute/SellerRoute";
 
 
 const router = createBrowserRouter([
@@ -46,7 +47,7 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '/dashboard/sellPost',
-                element: <SellPost></SellPost>
+                element: <SellerRoute><SellPost></SellPost></SellerRoute>
             },
             {
                 path: '/dashboard/myBookings',

@@ -19,7 +19,7 @@ const BookingModal = ({ bookingInfo, setBookingInfo }) => {
         const location = form.MeetingLocation.value;
         const booking = {
 
-            productName: deviceName,
+            deviceName: deviceName,
             price: resalePrice,
             email,
             phone,
@@ -57,7 +57,7 @@ const BookingModal = ({ bookingInfo, setBookingInfo }) => {
                     <label htmlFor="booking-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
                     <h3 className="text-lg font-bold">{deviceName}</h3>
                     <form onSubmit={handleBooking} className='grid grid-cols-1 gap-3 mt-10'>
-                        <input name="productName" defaultValue={deviceName} disabled type="text" placeholder="Your Name" className="input w-full input-bordered" />
+                        <input name="deviceName" defaultValue={deviceName} disabled type="text" placeholder="Your Name" className="input w-full input-bordered" />
                         <input name="price" defaultValue={resalePrice} disabled type="text" placeholder="Your Name" className="input w-full input-bordered" />
 
                         {
