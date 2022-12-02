@@ -26,8 +26,8 @@ const DashboardLayout = () => {
                         <li><Link to={'/dashboard/mybookings'}>My Bookings</Link></li>
                         {
                             isSeller && <>
-                                <li><Link to="/dashboard/sellpost">Sell Your Car</Link></li>
-                                <li><Link to="/dashboard/myposts">My Posts</Link></li>
+                                <li><Link to="/dashboard/sellPost">Sell Your Phone</Link></li>
+                                <li><Link to="/dashboard/myPosts">My Posts</Link></li>
                             </>
                         }
                         {

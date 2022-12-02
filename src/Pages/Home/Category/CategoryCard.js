@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const CategoryCard = ({ product }) => {
-    const { name, picture, _id, category } = product;
+    const { name, picture, category } = product;
     console.log(category)
 
 

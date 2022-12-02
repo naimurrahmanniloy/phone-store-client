@@ -59,7 +59,12 @@ const BookingModal = ({ bookingInfo, setBookingInfo }) => {
                     <form onSubmit={handleBooking} className='grid grid-cols-1 gap-3 mt-10'>
                         <input name="productName" defaultValue={deviceName} disabled type="text" placeholder="Your Name" className="input w-full input-bordered" />
                         <input name="price" defaultValue={resalePrice} disabled type="text" placeholder="Your Name" className="input w-full input-bordered" />
-                        <input name="name" defaultValue={user?.displayName} disabled type="text" placeholder="Your Name" className="input w-full input-bordered" />
+
+                        {
+                            user?.displayName ? <input name="name" defaultValue={user?.displayName} disabled type="text" placeholder="Your Name" className="input w-full input-bordered" /> :
+                                <input name="name" type="text" placeholder="Your Name" className="input w-full input-bordered" />
+                        }
+
                         <input name="email" defaultValue={user?.email} disabled type="email" placeholder="Email Address" className="input w-full input-bordered" />
                         <input name="phone" type="text" placeholder="Phone Number" className="input w-full input-bordered" />
                         <input name="MeetingLocation" type="text" placeholder="Meeting location" className="input w-full input-bordered" />
