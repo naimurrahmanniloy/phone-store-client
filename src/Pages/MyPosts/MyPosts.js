@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
-import { AuthContext } from '../../../Context/AuthProvider';
-
+import { AuthContext } from '../../context/AuthProvider';
 
 
 const MyPosts = () => {
@@ -9,30 +8,20 @@ const MyPosts = () => {
     const [posts, setPosts] = useState([])
 
     useEffect(() => {
-        fetch(`http://localhost:5000/allphones?email=${user?.email}`, {
-            headers: {
-                authorization: `bearer ${localStorage.getItem('accessToken')}`
-            }
-        })
-            .then(res => {
-                if (res.status === 401 || res.status === 403) {
-                    return logOut();
-                }
-                return res.json();
-            })
+        fetch(`http://localhost:5000/allPhones?email=${user?.email}`)
+
+            .then(res => res.json())
+
             .then(data => {
                 setPosts(data);
             })
-    }, [user?.email, logOut])
+    }, [])
 
     const handleDelete = id => {
         const proceed = window.confirm('Are you sure?');
         if (proceed) {
-            fetch(`http://localhost:5000/allphones/${id}`, {
-                method: 'DELETE',
-                headers: {
-                    authorization: `bearer ${localStorage.getItem('accessToken')}`
-                }
+            fetch(`http://localhost:5000/allPhones/${id}`, {
+                method: 'DELETE'
             })
                 .then(res => res.json())
                 .then(data => {
@@ -55,7 +44,7 @@ const MyPosts = () => {
                             <h2 className="card-title">{post.deviceName}</h2>
                             <p>Original price: ${post.originalPrice}</p>
                             <p>Resale price: ${post.resalePrice}</p>
-                            <p>Year of Purchase: {post.yearOfPurchase}</p>
+                            <p>Year of Use: {post.yearOfPurchase}</p>
                             <p>Location: {post.location}</p>
                             <p>Seller name: {post.sellerName}</p>
                             <div className="card-actions justify-end">

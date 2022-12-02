@@ -2,9 +2,6 @@ import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import toast from 'react-hot-toast';
 
-
-
-
 const AllPost = () => {
 
     const { data: posts = [], refetch } = useQuery({
@@ -20,10 +17,7 @@ const AllPost = () => {
         const proceed = window.confirm('Are you sure, you want to delete this sell post');
         if (proceed) {
             fetch(`http://localhost:5000/allphones/${id}`, {
-                method: 'DELETE',
-                headers: {
-                    authorization: `bearer ${localStorage.getItem('accessToken')}`
-                }
+                method: 'DELETE'
             })
                 .then(res => res.json())
                 .then(data => {

@@ -10,8 +10,7 @@ const Signup = () => {
     const { createUser, updateUser } = useContext(AuthContext);
     const [signUpError, setSignUpError] = useState('');
 
-    const navigate = useNavigate()
-
+    const navigate = useNavigate();
 
     const handleSignUp = data => {
         console.log(data)
@@ -46,21 +45,11 @@ const Signup = () => {
         })
             .then(res => res.json())
             .then(data => {
-                getUserToken(email);
+                console.log(data)
                 navigate('/')
             })
     }
 
-    const getUserToken = email => {
-        fetch(`http://localhost:5000/jwt?email=${email}`)
-            .then(res => res.json())
-            .then(data => {
-                if (data.accessToken) {
-                    localStorage.setItem('accessToken', data.accessToken)
-                    navigate('/')
-                }
-            })
-    }
 
     return (
         <div className='h-[800px]  flex justify-center items-center '>

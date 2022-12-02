@@ -10,6 +10,7 @@ import Categories from "../../Pages/DisplayPost/Categories";
 import Home from "../../Pages/Home/Home/Home";
 import Login from "../../Pages/Login/Login";
 import MyBookings from "../../Pages/MyBookings/MyBookings";
+import MyPosts from "../../Pages/MyPosts/MyPosts";
 import Payment from "../../Pages/Payment/Payment";
 import SellPost from "../../Pages/SellPost/SellPost";
 import Signup from "../../Pages/Signup/Signup";
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/sellPost',
                 element: <SellerRoute><SellPost></SellPost></SellerRoute>
+            },
+            {
+                path: '/dashboard/myPosts',
+                element: <SellerRoute><MyPosts></MyPosts></SellerRoute>
             },
             {
                 path: '/dashboard/myBookings',

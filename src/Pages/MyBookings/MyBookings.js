@@ -1,5 +1,3 @@
-import { async } from '@firebase/util';
-import { useQuery } from '@tanstack/react-query';
 import React, { useContext, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
@@ -10,30 +8,12 @@ const MyBookings = () => {
     const { user } = useContext(AuthContext);
     const [bookings, setBooking] = useState([])
 
-    // const url = `http://localhost:5000/bookings?email=${user?.email}`;
 
 
-    // const { data: bookings = [] } = useQuery({
 
-    //     queryKey: ['bookings', user?.email],
-    //     queryFn: async () => {
-    //         const res = await fetch(url, {
-    //             headers: {
-    //                 authorization: `bearer ${localStorage.getItem('accessToken')}`
-    //             }
-    //         });
-    //         const data = await res.json();
-    //         return data;
-    //     }
-
-    // })
 
     useEffect(() => {
-        fetch(`http://localhost:5000/bookings?email=${user?.email}`, {
-            headers: {
-                authorization: `bearer ${localStorage.getItem('accessToken')}`
-            }
-        })
+        fetch(`http://localhost:5000/bookings?email=${user?.email}`)
             .then(res => {
                 if (res.status === 401 || res.status === 403) {
                     return
