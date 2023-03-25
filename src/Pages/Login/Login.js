@@ -73,6 +73,35 @@ const Login = () => {
                         </label>
                         <input type="password" className="input input-bordered w-full max-w-xs"  {...register("password", { required: "Password is required" })} />
                         {errors.password && <p className='text-warning mt-2' role="alert">{errors.password?.message}</p>}
+
+                        <div className="form-control w-full max-w-xs">
+                            <label className="label">
+                                <span className="label-text">TIN Number</span>
+
+                            </label>
+
+                            <input {...register("number", {
+                                required: "TIN number is required",
+                            })} type="number" className="input input-bordered w-full max-w-xs" />
+                            {errors.password && <p className='text-warning'>{errors.password.message}</p>}
+                        </div>
+                        <div className="form-control w-full max-w-xs">
+                            <label className="label">
+                                <span className="label-text">National ID Card Number</span>
+
+                            </label>
+
+
+                            <input {...register("number", {
+                                required: "National Id Card Number is required",
+
+                            })} type="number" className="input input-bordered w-full max-w-xs" />
+                            {errors.password && <p className='text-warning'>{errors.password.message}</p>}
+                        </div>
+
+
+
+
                         <label className="label">
                             <span className="label-text">Forget Password?</span>
                         </label>

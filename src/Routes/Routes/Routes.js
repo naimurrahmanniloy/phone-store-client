@@ -42,7 +42,7 @@ const router = createBrowserRouter([
             {
                 path: '/category/:category',
                 element: <Categories></Categories>,
-                loader: ({ params }) => fetch(`http://localhost:5000/category/${params.category}`)
+                loader: ({ params }) => fetch(`https://phone-store-server-nu.vercel.app/category/${params.category}`)
 
             },
         ]
@@ -78,7 +78,7 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/payment/:id',
                 element: <Payment></Payment>,
-                loader: ({ params }) => fetch(`http://localhost:5000/bookings/${params.id}`)
+                loader: ({ params }) => fetch(`https://phone-store-server-nu.vercel.app/bookings/${params.id}`)
             },
 
 

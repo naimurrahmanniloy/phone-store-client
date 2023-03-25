@@ -8,7 +8,7 @@ const MyPosts = () => {
     const [posts, setPosts] = useState([])
 
     useEffect(() => {
-        fetch(`http://localhost:5000/allPhones?email=${user?.email}`)
+        fetch(`https://phone-store-server-nu.vercel.app/allPhones?email=${user?.email}`)
 
             .then(res => res.json())
 
@@ -20,7 +20,7 @@ const MyPosts = () => {
     const handleDelete = id => {
         const proceed = window.confirm('Are you sure?');
         if (proceed) {
-            fetch(`http://localhost:5000/allPhones/${id}`, {
+            fetch(`https://phone-store-server-nu.vercel.app/allPhones/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())

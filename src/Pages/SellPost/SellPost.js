@@ -16,7 +16,7 @@ const SellPost = () => {
     const { data: categories, isLoading } = useQuery({
         queryKey: ['categories'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/category');
+            const res = await fetch('https://phone-store-server-nu.vercel.app/category');
             const data = await res.json();
             return data;
         }
@@ -50,7 +50,7 @@ const SellPost = () => {
                         description: data.description,
                     }
 
-                    fetch('http://localhost:5000/allPhones', {
+                    fetch('https://phone-store-server-nu.vercel.app/allPhones', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',

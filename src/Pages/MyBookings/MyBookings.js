@@ -13,7 +13,7 @@ const MyBookings = () => {
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/bookings?email=${user?.email}`)
+        fetch(`https://phone-store-server-nu.vercel.app/bookings?email=${user?.email}`)
             .then(res => {
                 if (res.status === 401 || res.status === 403) {
                     return
@@ -28,7 +28,7 @@ const MyBookings = () => {
     const handleDelete = id => {
         const proceed = window.confirm('Are you sure');
         if (proceed) {
-            fetch(`http://localhost:5000/bookings/${id}`, {
+            fetch(`https://phone-store-server-nu.vercel.app/bookings/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())

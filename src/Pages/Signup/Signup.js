@@ -24,7 +24,7 @@ const Signup = () => {
                 }
                 updateUser(userInfo)
                     .then(() => {
-                        saveUser(data.name, data.email, data.role);
+                        saveUser(data.name, data.email, data.role, data.tin, data.nid);
                     })
                     .catch(err => console.log(err))
             })
@@ -34,9 +34,9 @@ const Signup = () => {
             })
     }
 
-    const saveUser = (name, email, role) => {
-        const user = { name, email, role };
-        fetch('http://localhost:5000/users', {
+    const saveUser = (name, email, role, nid, tin) => {
+        const user = { name, email, role, nid, tin };
+        fetch('https://phone-store-server-nu.vercel.app/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -88,6 +88,34 @@ const Signup = () => {
                         })} type="password" className="input input-bordered w-full max-w-xs" />
                         {errors.password && <p className='text-warning'>{errors.password.message}</p>}
                     </div>
+                    <div className="form-control w-full max-w-xs">
+                        <label className="label">
+                            <span className="label-text">TIN Number</span>
+
+                        </label>
+
+                        {/* pattern for the password is : Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character */}
+                        <input {...register("tin", {
+                            required: "TIN number is required",
+                        })} type="number" className="input input-bordered w-full max-w-xs" />
+                        {errors.password && <p className='text-warning'>{errors.password.message}</p>}
+                    </div>
+                    <div className="form-control w-full max-w-xs">
+                        <label className="label">
+                            <span className="label-text">National ID Card Number</span>
+
+                        </label>
+
+                        {/* pattern for the password is : Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character */}
+                        <input {...register("nid", {
+                            required: "National Id Card Number is required",
+
+                        })} type="number" className="input input-bordered w-full max-w-xs" />
+                        {errors.password && <p className='text-warning'>{errors.password.message}</p>}
+                    </div>
+
+
+
                     <div className="form-control w-full max-w-xs mt-2 mb-2">
                         <select className='py-2' {...register("role", { required: "Selecting role is required" })}>
                             <option value="">Select Role</option>

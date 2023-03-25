@@ -7,7 +7,7 @@ const AllPost = () => {
     const { data: posts = [], refetch } = useQuery({
         queryKey: ['posts'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/allphones');
+            const res = await fetch('https://phone-store-server-nu.vercel.app/allphones');
             const data = await res.json();
             return data;
         }
@@ -16,7 +16,7 @@ const AllPost = () => {
     const handleDelete = id => {
         const proceed = window.confirm('Are you sure, you want to delete this sell post');
         if (proceed) {
-            fetch(`http://localhost:5000/allphones/${id}`, {
+            fetch(`https://phone-store-server-nu.vercel.app/allphones/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
